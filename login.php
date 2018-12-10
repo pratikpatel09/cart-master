@@ -1,17 +1,24 @@
 <?php
 session_start();
 require("connection.php");
+$flag = true;
 if(isset($_SESSION['SESS_LOGGEDIN'])) {
 header("Location: " . $config_basedir);
 }
 
 if(isset($_POST['submit']))
 {
-if($_POST['userBox']=="" || $_POST['passBox']=="")
+if($_POST['userBox']=="")
 {
-	echo "<script>alert('Please enter Username and Password!')</script>":
+	$flag=false;
+	echo "<script>alert('Please enter Username!')</script>":
 }
-else
+if($_POST['passBox']=="")
+{
+	$flag=false;
+	echo "<script>alert('Please enter Password!')</script>":
+}
+if($flag==true)
 {
 $loginsql = "SELECT * FROM logins WHERE username = '" . $_POST['userBox']. "' AND password = '" . sha1($_POST['passBox']) . "'";
 $loginres = mysqli_query($conn,$loginsql);
