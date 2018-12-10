@@ -35,3 +35,6 @@ REFERENCES
 Changes made in functionality
 
 1). Add some validations in login page
+
+2). Add to Cart functionality added
+3). Registration page is added
